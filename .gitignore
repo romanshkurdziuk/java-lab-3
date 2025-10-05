@@ -1,0 +1,8 @@
+# Compiled Java class files
+/bin/
+
+# Log files
+*.log
+
+# IDE-specific files
+.vscode/
