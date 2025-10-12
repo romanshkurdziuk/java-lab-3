@@ -1,21 +1,38 @@
 import java.util.Date;
 import java.util.List;
-import java.util.ArrayList;
 
 public class App {
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args) throws Exception 
+    {
 
-        HangGlider glider1 = new HangGlider(101, "Athlete", new Date(), 150000.0, 10.5, 90);
-        HangGlider glider2 = new HangGlider(102, "Windrider", new Date(System.currentTimeMillis() - 1000000000), 185000.0, 11.2, 100);
+        ApparatusListStorage storageList = new ApparatusListStorage();
+        storageList.addApparatus(new HangGlider(101, "Athlete", new Date(), 150000.0, 10.5, 90));        
+        storageList.addApparatus(new HangGlider(102, "Windrider", new Date(System.currentTimeMillis() - 1000000000), 185000.0, 11.2, 100));
 
-        List<HangGlider> gliders = new ArrayList<>();
+        ApparatusMapStorage storageMap = new ApparatusMapStorage();
+        storageMap.addApparatus(new HangGlider(205, "Sky-King", new Date(), 250000.0, 12.0, 110));
+        storageMap.addApparatus(new HangGlider(201, "Falcon", new Date(System.currentTimeMillis() - 2000000000), 210000.0, 11.8, 105));
+
+        /*HangGlider glider1 = new HangGlider(101, "Athlete", new Date(), 150000.0, 10.5, 90);
+        HangGlider glider2 = new HangGlider(102, "Windrider", new Date(System.currentTimeMillis() - 1000000000), 185000.0, 11.2, 100);*/
+
+        /*List<HangGlider> gliders = new ArrayList<>();
         gliders.add(glider1);
-        gliders.add(glider2);
-        System.out.println("====== Factory Production Report ======");
-        for (HangGlider glider : gliders) {
-            System.out.println(glider); 
+        gliders.add(glider2);*/
+
+        printItems(storageList.getAll());
+        printItems(storageMap.getAll());
+
+    }
+
+    public static void printItems(List<HangGlider> items)
+    {
+        for (HangGlider item : items)
+        {
+            System.out.println(item); 
             System.out.println("----------------------------------------"); 
         }
         System.out.println("=========== End of Report ===========");
     }
+
 }
