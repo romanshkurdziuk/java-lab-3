@@ -5,7 +5,7 @@ public class App {
     public static void main(String[] args) throws Exception 
     {
 
-        ApparatusListStorage storageList = new ApparatusListStorage();
+        /*ApparatusListStorage storageList = new ApparatusListStorage();
         storageList.addApparatus(new HangGlider(101, "Athlete", new Date(), 150000.0, 10.5, 90));        
         storageList.addApparatus(new HangGlider(102, "Windrider", new Date(System.currentTimeMillis() - 1000000000), 185000.0, 11.2, 100));
 
@@ -13,16 +13,13 @@ public class App {
         storageMap.addApparatus(new HangGlider(205, "Sky-King", new Date(), 250000.0, 12.0, 110));
         storageMap.addApparatus(new HangGlider(201, "Falcon", new Date(System.currentTimeMillis() - 2000000000), 210000.0, 11.8, 105));
 
-        /*HangGlider glider1 = new HangGlider(101, "Athlete", new Date(), 150000.0, 10.5, 90);
-        HangGlider glider2 = new HangGlider(102, "Windrider", new Date(System.currentTimeMillis() - 1000000000), 185000.0, 11.2, 100);*/
-
-        /*List<HangGlider> gliders = new ArrayList<>();
-        gliders.add(glider1);
-        gliders.add(glider2);*/
-
         printItems(storageList.getAll());
-        printItems(storageMap.getAll());
+        printItems(storageMap.getAll());*/
 
+        String filePath = "D:\\JAVA_VS_CODE\\Lab_3\\Lab3_Collections\\data.txt";
+        FileManager fileManager = new FileManager();
+        List<HangGlider> items = fileManager.readData(filePath);
+        printItems(items);
     }
 
     public static void printItems(List<HangGlider> items)
