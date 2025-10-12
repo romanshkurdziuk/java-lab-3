@@ -40,21 +40,17 @@ public class HangGlider extends FlyingApparatus
     }
 
     @Override
-    public String toString()
-    {
+    public String toString() {
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy");
-        return "Type: " + getApparatusType() +
-                "\nID: " + getId() +
-                "\nModel: " + getModel() +
-                "\nProduction date: " + dateFormat.format(getProductionDate()) +
-                "\nCost: " + getPrice() +
-                "\nWingspan: " + wingspan + " m" +
-                "\nPilot weight limit: " + pilotWeightLimit + " kg";
+
+        String header = String.format("---[ %s: %s ]---%n", getApparatusType(), model);
+        StringBuilder sb = new StringBuilder();
+        sb.append(String.format(" > %-22s: %d%n", "ID", id));
+        sb.append(String.format(" > %-22s: %s%n", "Production Date", dateFormat.format(productionDate)));
+        sb.append(String.format(" > %-22s: %.1fm%n", "Wingspan", wingspan));
+        sb.append(String.format(" > %-22s: %dkg%n", "Pilot Weight Limit", pilotWeightLimit));
+        sb.append(String.format(" > %-22s: %,.2f RUB%n", "Price", price));
+        
+        return header + sb.toString();
     }
-
-
-
-
-
-
 }
