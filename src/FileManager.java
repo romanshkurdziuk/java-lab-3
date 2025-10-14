@@ -6,6 +6,11 @@ import java.util.Date;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.EOFException;
+
+
 
 public class FileManager 
 {
@@ -57,4 +62,21 @@ public class FileManager
         System.out.println("Data loading complete. Successfully loaded " + items.size() + " records.");
         return items;
     }    
+    public void writeData(String filePath, List<HangGlider> items)
+    {
+        try (FileWriter writer = new FileWriter(filePath))
+        {
+            writer.write("// Format: ID;Model;ProductionDate(yyyy-MM-dd);Price;Wingspan;PilotWeightLimit\\n");
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+            for (HangGlider item : items)
+            {
+                String line = String.join(";", String.valueOf(item.getId()), item.getModel(), dateFormat.format(item.getProductionDate()), String.valueOf(item.getPrice()), String.valueOf(item.getWingspan()), String.valueOf(item.getPilotWeightLimit()));
+                writer.write(line + "\n");
+            }
+            System.out.println("[SUCCESS] YOUR DATA COMPLITELY WRITE");
+        } catch (IOException e)
+        {
+            System.out.println("[ERROR]");
+        }
+    }
 }

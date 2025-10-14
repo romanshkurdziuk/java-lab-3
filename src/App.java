@@ -17,9 +17,15 @@ public class App {
         printItems(storageMap.getAll());*/
 
         String filePath = "D:\\JAVA_VS_CODE\\Lab_3\\Lab3_Collections\\data.txt";
+        ApparatusStorage<HangGlider> items = new ApparatusMapStorage();
         FileManager fileManager = new FileManager();
-        List<HangGlider> items = fileManager.readData(filePath);
-        printItems(items);
+        List<HangGlider> data = fileManager.readData(filePath);
+        for (HangGlider item : data)
+        {
+            items.addApparatus(item);
+        }
+        Menu menu = new Menu(items, fileManager);
+        menu.run();
     }
 
     public static void printItems(List<HangGlider> items)
