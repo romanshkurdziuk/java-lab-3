@@ -66,7 +66,7 @@ public class FileManager
     {
         try (FileWriter writer = new FileWriter(filePath))
         {
-            writer.write("// Format: ID;Model;ProductionDate(yyyy-MM-dd);Price;Wingspan;PilotWeightLimit\\n");
+            writer.write("// Format: ID;Model;ProductionDate(yyyy-MM-dd);Price;Wingspan;PilotWeightLimit\n");
             SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
             for (HangGlider item : items)
             {

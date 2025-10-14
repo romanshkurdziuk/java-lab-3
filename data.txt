@@ -1,4 +1,4 @@
-// Format: ID;Model;ProductionDate(yyyy-MM-dd);Price;Wingspan;PilotWeightLimit\n301;Stalker;2023-05-20;280000.5;11.5;100
+// Format: ID;Model;ProductionDate(yyyy-MM-dd);Price;Wingspan;PilotWeightLimit
 302;Shadow;2024-01-15;310000.0;12.1;110
+304;Storm;2000-12-01;300000.0;60.0;90
 305;Breeze;2025-02-10;199999.99;10.8;95
-401;Vertum;1990-12-01;300.0;45.0;80

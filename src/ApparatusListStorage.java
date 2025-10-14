@@ -33,6 +33,7 @@ public class ApparatusListStorage extends ApparatusStorage<HangGlider>
     @Override
     public void removeByID(int ID)
     {
-        items.removeIf(item -> item.getId() == ID);
+        if(items.removeIf(item -> item.getId() == ID))
+        System.out.println("[SUCCESS] Hang Glider with " + ID + "ID was successfuly removed");
     }
 }

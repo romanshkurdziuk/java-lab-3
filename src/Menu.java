@@ -34,8 +34,8 @@ public class Menu
                 //
                 break;
                 case "4":
-                //
-                break;
+                    removeByID();
+                    break;
                 case "0":
                     System.out.println("Exiting the program. Goodbye!");
                     SaveDataANDExit();
@@ -47,7 +47,7 @@ public class Menu
     private void displayMenu()
     {
         System.out.println("\n====[ FACTORY CONTROL MENU ]====");
-        System.out.println("1. Display all hang glinders");
+        System.out.println("1. Display all hang gliders");
         System.out.println("2. Add a new hang glider");
         System.out.println("3. Edit an existing hang glider");
         System.out.println("4. Remove a hang glider");
@@ -81,7 +81,7 @@ public class Menu
 
     private void AddNewHangGlinder()
     {
-        System.out.println("---[ADD NEW HANG GLINDER]---");
+        System.out.println("---[ADD NEW HANG GLIDER]---");
         try
         {
             System.out.println("Enter ID: ");
@@ -112,11 +112,26 @@ public class Menu
             System.err.println("[ERROR] Invalid number format. Please enter a valid number.");
         }
     }
+
     private void SaveDataANDExit()
     {
         List<HangGlider> items = storage.getAll();
         String filePath = "D:\\JAVA_VS_CODE\\Lab_3\\Lab3_Collections\\data.txt";
         fileManager.writeData(filePath, items);
+    }
+
+    private void removeByID()
+    {
+        System.out.println("---[REMOVE HANG GLIDER]---");
+        try{
+            System.out.println("Enter ID for remove item: ");
+            int ID = Integer.parseInt(scanner.nextLine());
+            storage.removeByID(ID);
+            System.out.println("[SUCCESS] Hang Glider with " + ID + "ID was successfuly removed");
+        } catch (NumberFormatException e)
+        {
+            System.err.println("[ERROR] Invalid ID. Please enter a valid number");
+        }
     }
 
 }
