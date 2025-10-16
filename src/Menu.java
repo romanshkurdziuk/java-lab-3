@@ -2,7 +2,9 @@ import java.util.List;
 import java.util.Scanner;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.Comparator;
 
 public class Menu 
 {
@@ -35,6 +37,9 @@ public class Menu
                     break;
                 case "4":
                     removeByID();
+                    break;
+                case "5":
+                    sortAllHangGliders();
                     break;
                 case "0":
                     System.out.println("Exiting the program. Goodbye!");
@@ -70,7 +75,7 @@ public class Menu
         }
     }
 
-    private void printReport(List<HangGlider> items)
+    public void printReport(List<HangGlider> items)
     {
         for (HangGlider item : items)
         {
@@ -166,8 +171,44 @@ public class Menu
         {
             System.out.println("[ERROR] not correct date format");
         }
-
-
+    }
+    private void sortAllHangGliders()
+    {
+        System.out.println("-----[SORT HANG GLIDERS]-----");
+        System.out.println("1. SORT by model (A - Z)");
+        System.out.println("2. SORT by date production (Newest first)");
+        System.out.println("3. SORT by price (Low to High)");
+        System.out.println("4. SORT by wingspam (Low to High)");
+        System.out.println("5. SORT by pilot weight limit (Low to High)");
+        List<HangGlider> items = storage.getAll();
+        String choice = scanner.nextLine();
+        switch (choice)
+        {
+            case "1":
+                items.sort(Comparator.comparing(HangGlider::getModel));
+                System.out.println("....Sort by model....");
+                break;
+            case "2":
+                items.sort(Comparator.comparing(HangGlider::getProductionDate));
+                System.out.println("....Sort by date production....");
+                break;
+            case "3":
+                items.sort(Comparator.comparing(HangGlider::getPrice));
+                System.out.println("....Sort by price....");
+                break;
+            case "4":
+                items.sort(Comparator.comparing(HangGlider::getWingspan));
+                System.out.println("....Sort by wingspam....");
+                break;
+            case "5":
+                items.sort(Comparator.comparing(HangGlider::getPilotWeightLimit));
+                System.out.println("....Sort by pilot weight limit....");
+                break;
+            default:
+                System.out.println("Invalid sorting choice.");
+                return;
+        }
+        printReport(items);
     }
 
 }
