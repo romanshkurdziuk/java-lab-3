@@ -31,8 +31,8 @@ public class Menu
                     AddNewHangGlinder();
                     break;
                 case "3":
-                //
-                break;
+                    editHangGlider();
+                    break;
                 case "4":
                     removeByID();
                     break;
@@ -51,6 +51,7 @@ public class Menu
         System.out.println("2. Add a new hang glider");
         System.out.println("3. Edit an existing hang glider");
         System.out.println("4. Remove a hang glider");
+        System.out.println("5. Sort all hang gliders");
         System.out.println("0. Exit and save data to file");
         System.out.println("==============================");
     }
@@ -132,6 +133,41 @@ public class Menu
         {
             System.err.println("[ERROR] Invalid ID. Please enter a valid number");
         }
+    }
+
+    private void editHangGlider()
+    {
+        System.out.println("---[EDIT AN EXISTING HANG GLIDER]---");
+        System.out.println("Enter the ID of the Hang Glider you want to edit");
+
+        int ID = Integer.parseInt(scanner.nextLine());
+        HangGlider item = storage.getByID(ID);
+        if (item == null)
+        {
+            System.out.println("[ERROR]: Glider with this id " + ID + " not found.");
+        }
+        try
+        {
+            System.out.println("Yon edit Hang Glider: MODEL " + item.getModel());
+            System.out.println("Enter new model: ");
+            String newModel = scanner.nextLine();
+            item.setModel(newModel);
+            System.out.println("Enter new Date production: ");
+            String newDateStr = scanner.nextLine();
+            item.setProductionDate(new SimpleDateFormat("yyyy-MM-dd").parse(newDateStr));
+            System.out.println("Enter price");
+            item.setPrice(Double.parseDouble(scanner.nextLine()));
+            System.out.println("Enter wingspam");
+            item.setWingspan(Double.parseDouble(scanner.nextLine()));
+            System.out.println("Enter weight limit: ");
+            item.setPilotWeightLimit(Integer.parseInt(scanner.nextLine()));
+            System.out.println("[SUCCESS] You have changed your Hang Glider");
+        } catch (ParseException e)
+        {
+            System.out.println("[ERROR] not correct date format");
+        }
+
+
     }
 
 }
