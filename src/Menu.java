@@ -21,6 +21,7 @@ public class Menu
     {
         while (true)
         {
+            
             displayMenu();
             System.out.println("Enter your choice");
             String choice = scanner.nextLine();
@@ -42,7 +43,7 @@ public class Menu
                     sortAllHangGliders();
                     break;
                 case "0":
-                    System.out.println("Exiting the program. Goodbye!");
+                    System.out.println("[EXIT] Exiting the program. Goodbye!");
                     SaveDataANDExit();
                     return;
             }
@@ -51,14 +52,14 @@ public class Menu
 
     private void displayMenu()
     {
-        System.out.println("\n====[ FACTORY CONTROL MENU ]====");
-        System.out.println("1. Display all hang gliders");
-        System.out.println("2. Add a new hang glider");
-        System.out.println("3. Edit an existing hang glider");
-        System.out.println("4. Remove a hang glider");
-        System.out.println("5. Sort all hang gliders");
-        System.out.println("0. Exit and save data to file");
-        System.out.println("==============================");
+        System.out.println("\n=====[ FACTORY CONTROL MENU ]=====");
+        System.out.println("1. -DISPLAY- all hang gliders");
+        System.out.println("2. -ADD- a new hang glider");
+        System.out.println("3. -CHANGE- an existing hang glider");
+        System.out.println("4. -REMOVE- a hang glider");
+        System.out.println("5. -SORT- all hang gliders");
+        System.out.println("0. -EXIT- and -SAVE- data to file");
+        System.out.println("====================================");
     }
 
     private void DisplayAllHangGlinders()
@@ -87,29 +88,29 @@ public class Menu
 
     private void AddNewHangGlinder()
     {
-        System.out.println("---[ADD NEW HANG GLIDER]---");
+        System.out.println("----[ADD NEW HANG GLIDER]----");
         try
         {
-            System.out.println("Enter ID: ");
+            System.out.println("Enter ID [DEC]: ");
             int ID = Integer.parseInt(scanner.nextLine());
             if (storage.getByID(ID) != null)
             {
                 System.out.println("[ERROR] A glinder with this ID already exists");
                 return;
             }
-            System.out.println("Enter model: ");
+            System.out.println("Enter model [A - Z, a - z]: ");
             String model = scanner.nextLine();
-            System.out.println("Enter production date (yyyy-MM-dd)");
+            System.out.println("Enter production date [yyyy-MM-dd]: ");
             SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
             Date productionDate = dateFormat.parse(scanner.nextLine());
-            System.out.println("Enter price: ");
+            System.out.println("Enter price [RUB]: ");
             double price = Double.parseDouble(scanner.nextLine());
-            System.out.println("Enter wingspan: ");
+            System.out.println("Enter wingspan [M]: ");
             double wingspan = Double.parseDouble(scanner.nextLine());
-            System.out.println("Enter pilot weight limit: ");
+            System.out.println("Enter pilot weight limit [KG]: ");
             int pilotWeightLimit = Integer.parseInt(scanner.nextLine());
             storage.addApparatus(new HangGlider(ID, model, productionDate, price, wingspan, pilotWeightLimit));
-            System.out.println("Successfully added new hang glider: " + model);
+            System.out.println("[SUCCESS] Added a new hang glider: [ " + model + " ]");
         } catch (ParseException e)
         {
             System.out.println("[ERROR]  Invalid date format. Please use 'yyyy-MM-dd'.");
@@ -128,12 +129,12 @@ public class Menu
 
     private void removeByID()
     {
-        System.out.println("---[REMOVE HANG GLIDER]---");
+        System.out.println("----[REMOVE THE HANG GLIDER]----");
         try{
             System.out.println("Enter ID for remove item: ");
             int ID = Integer.parseInt(scanner.nextLine());
             storage.removeByID(ID);
-            System.out.println("[SUCCESS] Hang Glider with " + ID + "ID was successfuly removed");
+            System.out.println("[SUCCESS] Hang Glider with [ " + ID + " ] ID was successfuly removed");
         } catch (NumberFormatException e)
         {
             System.err.println("[ERROR] Invalid ID. Please enter a valid number");
@@ -142,8 +143,8 @@ public class Menu
 
     private void editHangGlider()
     {
-        System.out.println("---[EDIT AN EXISTING HANG GLIDER]---");
-        System.out.println("Enter the ID of the Hang Glider you want to edit");
+        System.out.println("----[CHANGE AN EXISTING HANG GLIDER]----");
+        System.out.println("Enter the ID of the Hang Glider you want to edit: ");
 
         int ID = Integer.parseInt(scanner.nextLine());
         HangGlider item = storage.getByID(ID);
@@ -153,20 +154,20 @@ public class Menu
         }
         try
         {
-            System.out.println("Yon edit Hang Glider: MODEL " + item.getModel());
-            System.out.println("Enter new model: ");
+            System.out.println("You're changing the hang glider: [ MODEL " + item.getModel() + " ]");
+            System.out.println("Enter model [A - Z, a - z]: ");
             String newModel = scanner.nextLine();
             item.setModel(newModel);
-            System.out.println("Enter new Date production: ");
+            System.out.println("Enter new Date production [yyyy-MM-dd]: ");
             String newDateStr = scanner.nextLine();
             item.setProductionDate(new SimpleDateFormat("yyyy-MM-dd").parse(newDateStr));
-            System.out.println("Enter price");
+            System.out.println("Enter price [RUB]: ");
             item.setPrice(Double.parseDouble(scanner.nextLine()));
-            System.out.println("Enter wingspam");
+            System.out.println("Enter wingspam [M]: ");
             item.setWingspan(Double.parseDouble(scanner.nextLine()));
-            System.out.println("Enter weight limit: ");
+            System.out.println("Enter weight limit [KG]: ");
             item.setPilotWeightLimit(Integer.parseInt(scanner.nextLine()));
-            System.out.println("[SUCCESS] You have changed your Hang Glider");
+            System.out.println("[SUCCESS] Added a new hang glider: [ " + newModel + " ]");
         } catch (ParseException e)
         {
             System.out.println("[ERROR] not correct date format");
@@ -174,12 +175,12 @@ public class Menu
     }
     private void sortAllHangGliders()
     {
-        System.out.println("-----[SORT HANG GLIDERS]-----");
-        System.out.println("1. SORT by model (A - Z)");
-        System.out.println("2. SORT by date production (Newest first)");
-        System.out.println("3. SORT by price (Low to High)");
-        System.out.println("4. SORT by wingspam (Low to High)");
-        System.out.println("5. SORT by pilot weight limit (Low to High)");
+        System.out.println("----[SORT HANG GLIDERS]----");
+        System.out.println("1. SORT by model [A - Z]");
+        System.out.println("2. SORT by date production [Newest first]");
+        System.out.println("3. SORT by price [Low to High]");
+        System.out.println("4. SORT by wingspam [Low to High]");
+        System.out.println("5. SORT by pilot weight limit [Low to High]");
         List<HangGlider> items = storage.getAll();
         String choice = scanner.nextLine();
         switch (choice)
@@ -205,7 +206,7 @@ public class Menu
                 System.out.println("....Sort by pilot weight limit....");
                 break;
             default:
-                System.out.println("Invalid sorting choice.");
+                System.out.println("[ERROR] Invalid sorting choice.");
                 return;
         }
         printReport(items);

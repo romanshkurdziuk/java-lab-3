@@ -61,6 +61,7 @@ public class FileManager
         System.out.println("Data loading complete. Successfully loaded " + items.size() + " records.");
         return items;
     }    
+
     public void writeData(String filePath, List<HangGlider> items)
     {
         try (FileWriter writer = new FileWriter(filePath))
@@ -72,7 +73,7 @@ public class FileManager
                 String line = String.join(";", String.valueOf(item.getId()), item.getModel(), dateFormat.format(item.getProductionDate()), String.valueOf(item.getPrice()), String.valueOf(item.getWingspan()), String.valueOf(item.getPilotWeightLimit()));
                 writer.write(line + "\n");
             }
-            System.out.println("[SUCCESS] YOUR DATA COMPLITELY WRITE");
+            System.out.println("[SUCCESS] YOUR Data is completelely saved to file: [ "+ filePath + " ]");
         } catch (IOException e)
         {
             System.out.println("[ERROR]");

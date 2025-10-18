@@ -1,4 +1,5 @@
 // Format: ID;Model;ProductionDate(yyyy-MM-dd);Price;Wingspan;PilotWeightLimit
+99;AXELES;2024-09-01;3000000.0;200.0;120
 302;Shadow;2024-01-15;310000.0;12.1;110
 304;Storm;2000-12-01;300000.0;60.0;90
 305;Breeze;2025-02-10;199999.99;10.8;95

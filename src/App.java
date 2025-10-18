@@ -14,15 +14,4 @@ public class App {
         Menu menu = new Menu(items, fileManager);
         menu.run();
     }
-
-    public static void printItems(List<HangGlider> items)
-    {
-        for (HangGlider item : items)
-        {
-            System.out.println(item); 
-            System.out.println("----------------------------------------"); 
-        }
-        System.out.println("=========== End of Report ===========");
-    }
-
 }
