@@ -41,6 +41,12 @@ public class Menu
                 case "5":
                     sortAllHangGliders();
                     break;
+                case "6":
+                    loadHangGlidersFromJson();
+                    break;
+                case "7":
+                    saveHangGlidersToJson();
+                    break;
                 case "0":
                     System.out.println("[EXIT] Exiting the program. Goodbye!");
                     SaveDataANDExit();
@@ -57,6 +63,8 @@ public class Menu
         System.out.println("3. -CHANGE- an existing hang glider");
         System.out.println("4. -REMOVE- a hang glider");
         System.out.println("5. -SORT- all hang gliders");
+        System.out.println("6. -LOAD- data from JSON file");
+        System.out.println("7. -SAVE- data to JSON file");
         System.out.println("0. -EXIT- and -SAVE- data to file");
         System.out.println("====================================");
     }
@@ -211,4 +219,40 @@ public class Menu
         printReport(items);
     }
 
+    private void loadHangGlidersFromJson()
+    {
+        System.out.println("----[LOAD DATA FROM JSON FILE]----");
+        System.out.println("[WARNING] All current data in storage will be replaced.");
+        System.out.println("Are you sure you want to load data from JSON? (y/n): ");
+        String agreement = scanner.nextLine();
+        if (agreement.equalsIgnoreCase("y"))
+        {
+            if (storage instanceof ApparatusListStorage)
+            {
+                ((ApparatusListStorage) storage).clear();
+            }
+            else if (storage instanceof ApparatusMapStorage)
+            {
+                ((ApparatusMapStorage) storage).clear();
+            }
+        }
+
+        String filePath = "D:\\JAVA_VS_CODE\\Lab_3\\Lab3_Collections\\data.json";
+        List<HangGlider> items = fileManager.readDataFromJson(filePath);
+        if (items != null)
+        {
+            for (HangGlider item : items)
+            {
+                storage.addApparatus(item);
+            }
+            System.out.println("[SUCCESS] New storage has been successfully loaded from JSON");
+        } 
+    }
+
+    private void saveHangGlidersToJson()
+    {
+        System.out.println("----[SAVE DATA TO JSON]----");
+        String filePath = "D:\\JAVA_VS_CODE\\Lab_3\\Lab3_Collections\\data.json";
+        fileManager.writeDataToJson(filePath, storage.getAll());
+    }
 }

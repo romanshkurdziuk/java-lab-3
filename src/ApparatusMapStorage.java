@@ -30,4 +30,10 @@ public class ApparatusMapStorage extends ApparatusStorage<HangGlider>
     {
         items.remove(ID);
     }
+
+    @Override
+    public void clear()
+    {
+        items.clear();
+    }
 }

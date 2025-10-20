@@ -7,7 +7,14 @@ import java.util.List;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.io.FileWriter;
+import java.io.FileReader;
 import java.io.IOException;
+import java.lang.reflect.Type;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.reflect.TypeToken;
+
 
 
 
@@ -78,5 +85,37 @@ public class FileManager
         {
             System.out.println("[ERROR]");
         }
+    }
+
+    public void writeDataToJson(String filePath, List<HangGlider> items)
+    {
+        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        try (FileWriter writer = new FileWriter(filePath))
+        {
+            gson.toJson(items, writer);
+            System.out.println("[SUCCESS] Data saved to file " + filePath);
+        } catch(IOException e)
+        {
+            System.err.println("[ERROR] While saving data to JSON file: " + e.getMessage());
+        }
+    }
+
+    public List<HangGlider> readDataFromJson(String filePath)
+    {
+        Gson gson = new Gson();
+        try (FileReader reader = new FileReader(filePath))
+        {
+            Type listType = new TypeToken<ArrayList<HangGlider>>() {}.getType();
+            List<HangGlider> items = gson.fromJson(reader, listType);
+            System.out.println("[SUCCESS] Data loated from " + filePath);
+            return items;
+        } catch (FileNotFoundException e)
+        {
+            System.err.println("[ERROR] Data file not found at: " + filePath);
+        } catch (IOException e)
+        {
+            System.err.println("[ERROR] While reading data from Json file" + e.getMessage());
+        }
+        return new ArrayList<>();
     }
 }

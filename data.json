@@ -1,0 +1,50 @@
+[
+  {
+    "wingspan": 200.0,
+    "pilotWeightLimit": 120,
+    "id": 99,
+    "model": "AXELES",
+    "productionDate": "Sep 1, 2024, 12:00:00 AM",
+    "price": 3000000.0
+  },
+  {
+    "wingspan": 12.1,
+    "pilotWeightLimit": 110,
+    "id": 302,
+    "model": "Shadow",
+    "productionDate": "Jan 15, 2024, 12:00:00 AM",
+    "price": 310000.0
+  },
+  {
+    "wingspan": 60.0,
+    "pilotWeightLimit": 90,
+    "id": 304,
+    "model": "Storm",
+    "productionDate": "Dec 1, 2000, 12:00:00 AM",
+    "price": 300000.0
+  },
+  {
+    "wingspan": 10.8,
+    "pilotWeightLimit": 95,
+    "id": 305,
+    "model": "Breeze",
+    "productionDate": "Feb 10, 2025, 12:00:00 AM",
+    "price": 199999.99
+  },
+  {
+    "wingspan": 1000.0,
+    "pilotWeightLimit": 44499,
+    "id": 500,
+    "model": "ATLANT",
+    "productionDate": "Dec 1, 1999, 12:00:00 AM",
+    "price": 1000000.0
+  },
+  {
+    "wingspan": 1000.0,
+    "pilotWeightLimit": 1000,
+    "id": 9998,
+    "model": "MAUS",
+    "productionDate": "Dec 9, 2019, 12:00:00 AM",
+    "price": 1.0E7
+  }
+]
