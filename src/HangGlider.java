@@ -1,5 +1,8 @@
 import java.util.Date;
 import java.text.SimpleDateFormat;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlElement;
+
 
 public class HangGlider extends FlyingApparatus
 {
@@ -13,6 +16,12 @@ public class HangGlider extends FlyingApparatus
         this.pilotWeightLimit = pilotWeightLimit;
     }
 
+    public HangGlider()
+    {
+        // JAXB needs a no-arg constructor
+    }
+
+    @XmlElement
     public double getWingspan()
     {
         return this.wingspan;
@@ -23,6 +32,7 @@ public class HangGlider extends FlyingApparatus
         this.wingspan = wingspan;
     }
 
+    @XmlElement
     public int getPilotWeightLimit()
     {
         return pilotWeightLimit;

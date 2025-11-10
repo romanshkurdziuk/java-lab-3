@@ -15,7 +15,10 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 
-
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.JAXBException;
+import javax.xml.bind.Marshaller;
+import javax.xml.bind.Unmarshaller;
 
 
 public class FileManager 
@@ -93,7 +96,7 @@ public class FileManager
         try (FileWriter writer = new FileWriter(filePath))
         {
             gson.toJson(items, writer);
-            System.out.println("[SUCCESS] Data saved to file " + filePath);
+            System.out.println("[SUCCESS] Data saved to file [ " + filePath + " ]");
         } catch(IOException e)
         {
             System.err.println("[ERROR] While saving data to JSON file: " + e.getMessage());
@@ -107,7 +110,7 @@ public class FileManager
         {
             Type listType = new TypeToken<ArrayList<HangGlider>>() {}.getType();
             List<HangGlider> items = gson.fromJson(reader, listType);
-            System.out.println("[SUCCESS] Data loated from " + filePath);
+            System.out.println("[SUCCESS] Data loated from [ " + filePath + " ]'");
             return items;
         } catch (FileNotFoundException e)
         {
@@ -115,6 +118,22 @@ public class FileManager
         } catch (IOException e)
         {
             System.err.println("[ERROR] While reading data from Json file" + e.getMessage());
+        }
+        return new ArrayList<>();
+    }
+
+    public List<HangGlider> readDataFromXml(String filePath)
+    {
+        try
+        {
+            JAXBContext context = JAXBContext.newInstance(GliderWrapper.class);
+            Unmarshaller unmarshaller = context.createUnmarshaller();
+            GliderWrapper wrapper = (GliderWrapper) unmarshaller.unmarshal(new File(filePath));
+            System.out.println("[SUCCESS] Data loaded from: [ " + filePath + " ]");
+            return wrapper.getGliders();
+        } catch (JAXBException e)
+        {
+            System.err.println("[ERROR] While reading data from Xml file" + e.getMessage());
         }
         return new ArrayList<>();
     }

@@ -1,5 +1,11 @@
 import java.util.Date;
 
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlSeeAlso;
+
+
+@XmlSeeAlso({HangGlider.class})
 public abstract class FlyingApparatus 
 {
     protected int id;
@@ -14,7 +20,13 @@ public abstract class FlyingApparatus
         this.productionDate = productionDate;
         this.price = price;
     }
+    
+    protected FlyingApparatus() 
+    {
+        // JAXB needs a no-arg constructor
+    }
 
+    @XmlElement
     public int getId()
     {
         return this.id;
@@ -25,6 +37,7 @@ public abstract class FlyingApparatus
         this.id = id;
     }
 
+    @XmlElement
     public String getModel()
     {
         return this.model;
@@ -35,6 +48,7 @@ public abstract class FlyingApparatus
         this.model = model;
     }
 
+    @XmlElement
     public Date getProductionDate()
     {
         return this.productionDate;
@@ -45,6 +59,7 @@ public abstract class FlyingApparatus
         this.productionDate = productionDate;
     }
     
+    @XmlElement
     public double getPrice()
     {
         return this.price;
@@ -57,5 +72,3 @@ public abstract class FlyingApparatus
 
     public abstract String getApparatusType();
 }
-
-

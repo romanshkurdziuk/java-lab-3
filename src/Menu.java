@@ -47,6 +47,9 @@ public class Menu
                 case "7":
                     saveHangGlidersToJson();
                     break;
+                case "8":
+                    loadHangGlidersFromXml();
+                    break;
                 case "0":
                     System.out.println("[EXIT] Exiting the program. Goodbye!");
                     SaveDataANDExit();
@@ -65,6 +68,7 @@ public class Menu
         System.out.println("5. -SORT- all hang gliders");
         System.out.println("6. -LOAD- data from JSON file");
         System.out.println("7. -SAVE- data to JSON file");
+        System.out.println("8. -READ- data from XML file");
         System.out.println("0. -EXIT- and -SAVE- data to file");
         System.out.println("====================================");
     }
@@ -254,5 +258,40 @@ public class Menu
         System.out.println("----[SAVE DATA TO JSON]----");
         String filePath = "D:\\JAVA_VS_CODE\\Lab_3\\Lab3_Collections\\data.json";
         fileManager.writeDataToJson(filePath, storage.getAll());
+    }
+
+    private void loadHangGlidersFromXml() {
+        System.out.println("----[LOAD DATA FROM XML FILE]----");
+        System.out.println("[WARNING] All current data in storage will be replaced.");
+        System.out.print("Are you sure you want to load data from XML? (y/n): ");
+        String agreement = scanner.nextLine();
+
+        if (agreement.equalsIgnoreCase("y")) 
+        {
+            if (storage instanceof ApparatusListStorage) 
+            {
+                ((ApparatusListStorage) storage).clear();
+            } else if (storage instanceof ApparatusMapStorage) 
+            {
+                ((ApparatusMapStorage) storage).clear();
+            }
+            String filePath = "D:\\JAVA_VS_CODE\\Lab_3\\Lab3_Collections\\data.xml";
+            List<HangGlider> items = fileManager.readDataFromXml(filePath);
+            
+            if (items != null && !items.isEmpty()) 
+            {
+                for (HangGlider item : items) 
+                {
+                    storage.addApparatus(item);
+                }
+                System.out.println("[SUCCESS] New storage has been successfully loaded from XML.");
+            } else 
+            {
+                System.out.println("[INFO] No data was loaded from the XML file.");
+            }
+        } else 
+        {
+            System.out.println("[INFO] Load operation cancelled by user.");
+        }
     }
 }

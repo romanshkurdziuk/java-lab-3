@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<gliders>
+    <glider>
+        <id>501</id>
+        <model>Condor</model>
+        <price>230000.0</price>
+        <productionDate>2024-08-15T00:00:00+03:00</productionDate>
+        <pilotWeightLimit>105</pilotWeightLimit>
+        <wingspan>11.9</wingspan>
+    </glider>
+    <glider>
+        <id>502</id>
+        <model>Albatross</model>
+        <price>275000.50</price>
+        <productionDate>2025-01-20T00:00:00+03:00</productionDate>
+        <pilotWeightLimit>115</pilotWeightLimit>
+        <wingspan>12.4</wingspan>
+    </glider>
+    <glider>
+        <id>503</id>
+        <model>Swift</model>
+        <price>190000.0</price>
+        <productionDate>2023-11-10T00:00:00+03:00</productionDate>
+        <pilotWeightLimit>90</pilotWeightLimit>
+        <wingspan>10.2</wingspan>
+    </glider>
+</gliders>
