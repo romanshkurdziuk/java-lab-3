@@ -137,4 +137,22 @@ public class FileManager
         }
         return new ArrayList<>();
     }
+
+    public void writeDataToXml(String filePath, List<HangGlider> items)
+    {
+        try
+        {
+            GliderWrapper wrapper = new GliderWrapper();
+            wrapper.setGliders(items);
+
+            JAXBContext context = JAXBContext.newInstance(GliderWrapper.class);
+            Marshaller marshaller = context.createMarshaller();
+            marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true); // Для красивого вывода XML
+            marshaller.marshal(wrapper, new File(filePath));
+            System.out.println("[SUCCESS] Data saved to XML file: [ " + filePath + " ]");
+        } catch (JAXBException e) 
+        {
+            System.err.println("[ERROR] While writing data to XML file: " + e.getMessage());
+        }
+    }
 }

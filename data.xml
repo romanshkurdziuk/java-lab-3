@@ -1,27 +1,51 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <gliders>
     <glider>
-        <id>501</id>
-        <model>Condor</model>
-        <price>230000.0</price>
-        <productionDate>2024-08-15T00:00:00+03:00</productionDate>
-        <pilotWeightLimit>105</pilotWeightLimit>
-        <wingspan>11.9</wingspan>
+        <id>99</id>
+        <model>AXELES</model>
+        <price>3000000.0</price>
+        <productionDate>2024-09-01T00:00:00+03:00</productionDate>
+        <pilotWeightLimit>120</pilotWeightLimit>
+        <wingspan>200.0</wingspan>
     </glider>
     <glider>
-        <id>502</id>
-        <model>Albatross</model>
-        <price>275000.50</price>
-        <productionDate>2025-01-20T00:00:00+03:00</productionDate>
-        <pilotWeightLimit>115</pilotWeightLimit>
-        <wingspan>12.4</wingspan>
+        <id>302</id>
+        <model>Shadow</model>
+        <price>310000.0</price>
+        <productionDate>2024-01-15T00:00:00+03:00</productionDate>
+        <pilotWeightLimit>110</pilotWeightLimit>
+        <wingspan>12.1</wingspan>
     </glider>
     <glider>
-        <id>503</id>
-        <model>Swift</model>
-        <price>190000.0</price>
-        <productionDate>2023-11-10T00:00:00+03:00</productionDate>
+        <id>304</id>
+        <model>Storm</model>
+        <price>300000.0</price>
+        <productionDate>2000-12-01T00:00:00+02:00</productionDate>
         <pilotWeightLimit>90</pilotWeightLimit>
-        <wingspan>10.2</wingspan>
+        <wingspan>60.0</wingspan>
+    </glider>
+    <glider>
+        <id>305</id>
+        <model>Breeze</model>
+        <price>199999.99</price>
+        <productionDate>2025-02-10T00:00:00+03:00</productionDate>
+        <pilotWeightLimit>95</pilotWeightLimit>
+        <wingspan>10.8</wingspan>
+    </glider>
+    <glider>
+        <id>500</id>
+        <model>ATLANT</model>
+        <price>1000000.0</price>
+        <productionDate>1999-12-01T00:00:00+02:00</productionDate>
+        <pilotWeightLimit>44499</pilotWeightLimit>
+        <wingspan>1000.0</wingspan>
+    </glider>
+    <glider>
+        <id>9998</id>
+        <model>MAUS</model>
+        <price>1.0E7</price>
+        <productionDate>2019-12-09T00:00:00+03:00</productionDate>
+        <pilotWeightLimit>1000</pilotWeightLimit>
+        <wingspan>1000.0</wingspan>
     </glider>
 </gliders>

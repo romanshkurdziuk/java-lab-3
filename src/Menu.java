@@ -50,6 +50,9 @@ public class Menu
                 case "8":
                     loadHangGlidersFromXml();
                     break;
+                case "9":
+                    saveHangGlidersToXml();
+                    break;
                 case "0":
                     System.out.println("[EXIT] Exiting the program. Goodbye!");
                     SaveDataANDExit();
@@ -69,6 +72,7 @@ public class Menu
         System.out.println("6. -LOAD- data from JSON file");
         System.out.println("7. -SAVE- data to JSON file");
         System.out.println("8. -READ- data from XML file");
+        System.out.println("9. -SAVE- data to XML file");
         System.out.println("0. -EXIT- and -SAVE- data to file");
         System.out.println("====================================");
     }
@@ -293,5 +297,12 @@ public class Menu
         {
             System.out.println("[INFO] Load operation cancelled by user.");
         }
+    }
+
+    private void saveHangGlidersToXml()
+    {
+        System.out.println("----[SAVE DATA TO XML]----");
+        String filePath = "D:\\JAVA_VS_CODE\\Lab_3\\Lab3_Collections\\data.xml";
+        fileManager.writeDataToXml(filePath, storage.getAll());
     }
 }
