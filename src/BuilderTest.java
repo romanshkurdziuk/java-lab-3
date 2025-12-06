@@ -4,8 +4,8 @@ import org.junit.jupiter.api.Test;
 class BuilderTest {
 
     @Test
-    void testCustomBuild() {
-        // Проверяем, что цепочка вызовов (method chaining) работает корректно
+    void testCustomBuild() 
+    {
         HangGliderBuilder builder = new HangGliderBuilder();
         
         HangGlider glider = builder.setId(100)
@@ -14,7 +14,6 @@ class BuilderTest {
                                    .setWingspan(15.0)
                                    .build();
 
-        // Проверяем, что созданный объект содержит именно те данные, которые мы дали
         assertEquals(100, glider.getId());
         assertEquals("Custom-X", glider.getModel());
         assertEquals(999.99, glider.getPrice());
@@ -22,12 +21,11 @@ class BuilderTest {
     }
 
     @Test
-    void testDirectorBeginnerGlider() {
-        // Проверяем работу Директора (рецепт для новичка)
+    void testDirectorBeginnerGlider() 
+    {
         Director director = new Director();
         HangGliderBuilder builder = new HangGliderBuilder();
         
-        // Директор должен заполнить поля стандартными значениями
         director.constructBeginnerGlider(builder);
         HangGlider glider = builder.build();
 
@@ -37,8 +35,8 @@ class BuilderTest {
     }
 
     @Test
-    void testDirectorProGlider() {
-        // Проверяем работу Директора (рецепт для профи)
+    void testDirectorProGlider() 
+    {
         Director director = new Director();
         HangGliderBuilder builder = new HangGliderBuilder();
 

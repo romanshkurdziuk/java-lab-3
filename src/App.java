@@ -1,17 +1,32 @@
 import java.util.List;
-
+import javax.swing.SwingUtilities;
 public class App {
-    public static void main(String[] args) throws Exception 
+    public static void main(String[] args) 
     {
-        String filePath = "D:\\JAVA_VS_CODE\\Lab_3\\Lab3_Collections\\data.txt";
-        ApparatusStorage<HangGlider> items = new ApparatusMapStorage();
-        FileManager fileManager = new FileManager();
-        List<HangGlider> data = fileManager.readData(filePath);
-        for (HangGlider item : data)
-        {
-            items.addApparatus(item);
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (Exception e) {
+            // Если не вышло, будет стандартный дизайн
+            System.err.println("Nimbus theme not found.");
         }
-        Menu menu = new Menu(items, fileManager);
-        menu.run();
+        ApparatusStorage<HangGlider> storage = new ApparatusMapStorage();
+        FileManager fileManager = new FileManager();
+
+        // --- ИСПРАВЛЕНИЕ: Загружаем данные в хранилище перед запуском GUI ---
+        // Укажите путь к вашему файлу с данными.
+        // Вы можете выбрать любой формат: .txt, .json, .xml
+        String dataFilePath = "data.json"; // Например, загружаем из JSON
+        List<HangGlider> initialData = fileManager.readDataFromJson(dataFilePath);
+        // Добавляем загруженные данные в хранилище
+        initialData.forEach(storage::addApparatus);
+
+        SwingUtilities.invokeLater(() -> {
+            new MainWindow(storage, fileManager);
+        });
     }
 }
