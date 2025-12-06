@@ -59,6 +59,9 @@ public class Menu
                 case "11":
                     fileManager.backupToZip("backup.zip", "data.txt", "data.json", "data.xml");
                     break;
+                case "12":
+                    addStandardGliders();
+                    break;
                 case "0":
                     System.out.println("[EXIT] Exiting the program. Goodbye!");
                     SaveDataANDExit();
@@ -81,6 +84,7 @@ public class Menu
         System.out.println("9. -SAVE- data to XML file");
         System.out.println("10. -ENCRYPT- data");
         System.out.println("11. -ZIP- Backup data to ZIP");
+        System.out.println("12. -GENERATE- Standard/Default Models (Director Pattern)");
         System.out.println("0. -EXIT- and -SAVE- data to file");
         System.out.println("====================================");
     }
@@ -340,6 +344,38 @@ public class Menu
         } catch (Exception e)
         {
             System.out.println("[ERROR] " + e.getMessage());
+        }
+    }
+
+    private void addStandardGliders() 
+    {
+        System.out.println("\n----[GENERATING STANDART MODELS VIA DIRECTOR]----");
+        Director director = new Director();
+        HangGliderBuilder builder = new HangGliderBuilder();
+        int id1 = 901; 
+        if (storage.getByID(id1) == null) 
+        {
+            builder.setId(id1);
+            director.constructBeginnerGlider(builder);
+            HangGlider beginnerGlider = builder.build();
+            storage.addApparatus(beginnerGlider);
+            System.out.println("[SUCCESS] Generated: " + beginnerGlider.getModel());
+        } else 
+        {
+            System.out.println("[ERROR]: ID " + id1 + " is already taken.");
+        }
+        builder = new HangGliderBuilder(); 
+        int id2 = 902;
+        if (storage.getByID(id2) == null) 
+        {
+            builder.setId(id2);
+            director.constructProGlider(builder);
+            HangGlider proGlider = builder.build();
+            storage.addApparatus(proGlider);
+            System.out.println("[SUCCESS] Generated: " + proGlider.getModel());
+        } else 
+        {
+            System.out.println("[ERROR]: ID " + id2 + " is already taken.");
         }
     }
 }
