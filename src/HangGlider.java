@@ -1,6 +1,5 @@
 import java.util.Date;
 import java.text.SimpleDateFormat;
-import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlElement;
 
 

@@ -48,4 +48,12 @@
         <pilotWeightLimit>1000</pilotWeightLimit>
         <wingspan>1000.0</wingspan>
     </glider>
+    <glider>
+        <id>222222</id>
+        <model>qqqqqqqkkkkkkq</model>
+        <price>12211.0</price>
+        <productionDate>2000-13-01T00:00:00+02:00</productionDate>
+        <pilotWeightLimit>21</pilotWeightLimit>
+        <wingspan>89.0</wingspan>
+    </glider>
 </gliders>

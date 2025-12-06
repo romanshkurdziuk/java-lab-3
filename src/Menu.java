@@ -53,6 +53,12 @@ public class Menu
                 case "9":
                     saveHangGlidersToXml();
                     break;
+                case "10":
+                    encryption();
+                    break;
+                case "11":
+                    fileManager.backupToZip("backup.zip", "data.txt", "data.json", "data.xml");
+                    break;
                 case "0":
                     System.out.println("[EXIT] Exiting the program. Goodbye!");
                     SaveDataANDExit();
@@ -73,6 +79,8 @@ public class Menu
         System.out.println("7. -SAVE- data to JSON file");
         System.out.println("8. -READ- data from XML file");
         System.out.println("9. -SAVE- data to XML file");
+        System.out.println("10. -ENCRYPT- data");
+        System.out.println("11. -ZIP- Backup data to ZIP");
         System.out.println("0. -EXIT- and -SAVE- data to file");
         System.out.println("====================================");
     }
@@ -124,7 +132,18 @@ public class Menu
             double wingspan = Double.parseDouble(scanner.nextLine());
             System.out.println("Enter pilot weight limit [KG]: ");
             int pilotWeightLimit = Integer.parseInt(scanner.nextLine());
-            storage.addApparatus(new HangGlider(ID, model, productionDate, price, wingspan, pilotWeightLimit));
+
+            HangGliderBuilder builder = new HangGliderBuilder();
+            HangGlider hangGlider = builder
+                .setId(ID)
+                .setModel(model)
+                .setProductionDate(productionDate)
+                .setPrice(price)
+                .setWingspan(wingspan)
+                .setPilotWeightLimit(pilotWeightLimit)
+                .build();
+
+            storage.addApparatus(hangGlider);
             System.out.println("[SUCCESS] Added a new hang glider: [ " + model + " ]");
         } catch (ParseException e)
         {
@@ -160,15 +179,14 @@ public class Menu
     {
         System.out.println("----[CHANGE AN EXISTING HANG GLIDER]----");
         System.out.println("Enter the ID of the Hang Glider you want to edit: ");
-
-        int ID = Integer.parseInt(scanner.nextLine());
-        HangGlider item = storage.getByID(ID);
-        if (item == null)
-        {
-            System.out.println("[ERROR]: Glider with this id " + ID + " not found.");
-        }
         try
         {
+            int ID = Integer.parseInt(scanner.nextLine());
+            HangGlider item = storage.getByID(ID);
+            if (item == null) {
+            System.out.println("[ERROR]: Glider with this id " + ID + " not found.");
+                return;
+            }
             System.out.println("You're changing the hang glider: [ MODEL " + item.getModel() + " ]");
             System.out.println("Enter model [A - Z, a - z]: ");
             String newModel = scanner.nextLine();
@@ -186,6 +204,9 @@ public class Menu
         } catch (ParseException e)
         {
             System.out.println("[ERROR] not correct date format");
+        } catch (NumberFormatException e)
+        {
+            System.err.println("[ERROR] Invalid number format. Please enter a valid number for ID, price, wingspan, or weight limit.");
         }
     }
     private void sortAllHangGliders()
@@ -304,5 +325,21 @@ public class Menu
         System.out.println("----[SAVE DATA TO XML]----");
         String filePath = "D:\\JAVA_VS_CODE\\Lab_3\\Lab3_Collections\\data.xml";
         fileManager.writeDataToXml(filePath, storage.getAll());
+    }
+
+    private void encryption()
+    {
+        System.out.println("Enter the plain text: ");
+        String plainText = scanner.nextLine();
+        try
+        {
+            String encryptedData = CryptoProcessor.encrypt(plainText);
+            System.out.println("Encrypted data: " + encryptedData);
+            String decryptedData = CryptoProcessor.decrypt(encryptedData);
+            System.out.println("Decrypted data: " + decryptedData);
+        } catch (Exception e)
+        {
+            System.out.println("[ERROR] " + e.getMessage());
+        }
     }
 }

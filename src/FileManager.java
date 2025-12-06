@@ -20,6 +20,11 @@ import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
 
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.util.zip.ZipEntry;
+import java.util.zip.ZipOutputStream;
+
 
 public class FileManager 
 {
@@ -153,6 +158,45 @@ public class FileManager
         } catch (JAXBException e) 
         {
             System.err.println("[ERROR] While writing data to XML file: " + e.getMessage());
+        }
+    }
+
+    public void backupToZip(String zipName, String... sourceFiles) 
+    {
+        System.out.println("Starting backup process...");
+        
+        try (FileOutputStream fos = new FileOutputStream(zipName);
+             ZipOutputStream zos = new ZipOutputStream(fos)) 
+             {
+
+            for (String filePath : sourceFiles) 
+                {
+                File fileToZip = new File(filePath);
+                
+                if (!fileToZip.exists()) {
+                    System.err.println("[WARNING] File not found: " + fileToZip.getAbsolutePath());
+                    continue;
+                }
+
+                try (FileInputStream fis = new FileInputStream(fileToZip)) 
+                {
+                    ZipEntry zipEntry = new ZipEntry(fileToZip.getName());
+                    zos.putNextEntry(zipEntry);
+
+                    byte[] buffer = new byte[1024];
+                    int length;
+                    while ((length = fis.read(buffer)) >= 0) 
+                    {
+                        zos.write(buffer, 0, length);
+                    }
+                    zos.closeEntry();
+                    System.out.println(" + Archived: " + filePath);
+                }
+            }
+            System.out.println("[SUCCESS] Backup created: " + zipName);
+        } catch (IOException e) 
+        {
+            System.err.println("[ERROR] Backup failed: " + e.getMessage());
         }
     }
 }
