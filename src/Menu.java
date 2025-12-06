@@ -62,6 +62,9 @@ public class Menu
                 case "12":
                     addStandardGliders();
                     break;
+                case "13":
+                    testDecorator();
+                    break;
                 case "0":
                     System.out.println("[EXIT] Exiting the program. Goodbye!");
                     SaveDataANDExit();
@@ -85,6 +88,7 @@ public class Menu
         System.out.println("10. -ENCRYPT- data");
         System.out.println("11. -ZIP- Backup data to ZIP");
         System.out.println("12. -GENERATE- Standard/Default Models (Director Pattern)");
+        System.out.println("13. -DECORATOR- Pattern: Secure Save");
         System.out.println("0. -EXIT- and -SAVE- data to file");
         System.out.println("====================================");
     }
@@ -376,6 +380,29 @@ public class Menu
         } else 
         {
             System.out.println("[ERROR]: ID " + id2 + " is already taken.");
+        }
+    }
+
+    private void testDecorator() 
+    {
+        System.out.println("\n---[DECORATOR Pattern: Secure Save ]---");
+        com.google.gson.Gson gson = new com.google.gson.GsonBuilder().setPrettyPrinting().create();
+        String allDataString = gson.toJson(storage.getAll());
+        DataSource source = new EncryptionDecorator(
+                                new FileDataSource("secure_data.txt")
+                            );
+
+        System.out.println("Writing encrypted data...");
+        source.writeData(allDataString);
+        System.out.println("Check 'secure_data.txt' - it should be unreadable!");
+        System.out.println("\nReading and decrypting data back...");
+        String readBackJson = source.readData();
+        if (readBackJson.length() > 100) 
+        {
+            System.out.println("Read back (first 100 chars): " + readBackJson.substring(0, 100) + "...");
+        } else
+        {
+            System.out.println("Read back: " + readBackJson);
         }
     }
 }
